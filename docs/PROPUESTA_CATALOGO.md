@@ -1,0 +1,70 @@
+# Propuesta de catálogo — True Love Store
+
+Fuente: https://true-love-store-web.vercel.app (logo, colores, productos, precios y contactos).
+
+## 1. Identidad visual
+
+| Uso | Color | Código |
+|---|---|---|
+| Principal (logotipo, títulos de acento, precios destacados) | Rojo True Love | `#E30613` |
+| Secundario (botones, detalles, círculos) | Rosa marca | `#F5B4D2` |
+| Fondos suaves | Rosa claro | `#FFF0F6` |
+| Texto principal | Negro | `#1A1A1A` |
+| Texto secundario | Malva gris | `#5C4A52` |
+| Líneas y bordes | Rosa grisáceo | `#F0E4E9` |
+
+- **Tipografía:** Poppins (la misma de la web). Títulos en 600–700, textos en 400.
+- **Logotipo:** imagotipo rojo sobre fondos claros; versión blanca sobre rojo; isotipo (corazón) como sello.
+- **Estilo:** mucho espacio en blanco, esquinas redondeadas, etiquetas pequeñas en mayúsculas espaciadas.
+
+## 2. Distribución de páginas (A4 vertical, 12 páginas)
+
+| Pág. | Contenido | Composición |
+|---|---|---|
+| 01 | Portada | Degradado blanco → rosa claro, “CATÁLOGO OFICIAL 2026”, logotipo grande, lema y líneas de producto al pie. |
+| 02 | Bienvenida + índice | Frase principal, texto de marca, 4 beneficios en tarjetas rosa e índice con números de página. |
+| 03–04 | 01 · Photobooks & Fotolibros (7) | Foto de cabecera + intro + 3 productos; continuación con 4. |
+| 05–06 | 02 · Cuadros con Realidad Aumentada (7) | Igual estructura: 3 + 4. |
+| 07 | 03 · Álbumes de Figuritas (2) | Cabecera + 2 productos. |
+| 08–09 | 04 · Packs & Special Boxes (5) | 3 + 2. |
+| 10 | 05 · Scrapbooks & Agendas (3) | Cabecera + 3 productos. |
+| 11 | Suscripción mensual | Fondo rosa claro, tarjeta central con precio grande y botón de WhatsApp. |
+| 12 | Contraportada | Pasos para pedir, bloque rojo con WhatsApp, redes, ubicación y logotipo blanco. |
+
+**Ficha de producto:** foto cuadrada · etiqueta (Nuevo, Favorito, Premium…) · nombre · medida/formato en rojo · descripción de una línea · precio · botón “Pedir” (abre WhatsApp con el producto ya escrito).
+
+## 3. Textos
+
+**Portada**
+- Etiqueta: CATÁLOGO OFICIAL 2026
+- Lema: *Regalos personalizados para celebrar tus momentos especiales*
+
+**Bienvenida**
+- Título: *Hay recuerdos que merecen algo más que una pantalla.*
+- Texto: *En True Love Store convertimos tus fotos y tus historias en regalos que se tocan, se abren y se guardan para siempre. Cada pieza se diseña a tu medida y con mucho amor, para que tu detalle diga exactamente lo que sientes.*
+- Firma: *Con cariño, el equipo de True Love Store*
+- Beneficios (de la web): Diseño 100% personalizado · Envíos garantizados · Calidad fotográfica premium · Presentación inolvidable
+
+**Categorías** (eyebrow / frase / intro)
+1. **Photobooks & Fotolibros** — FAVORITOS DE LOS CLIENTES / *Un pedacito de ti, en cada página.* / Tus fotos favoritas, impresas en alta definición y encuadernadas para durar. El regalo ideal para aniversarios, cumpleaños y viajes que no quieres olvidar.
+2. **Cuadros con Realidad Aumentada** — UN REGALO DIFERENTE / *Más que un cuadro, una experiencia.* / Escanéalo con el celular y mira cómo tu foto cobra vida en video. Un detalle que sorprende la primera vez y emociona cada vez que se vuelve a ver.
+3. **Álbumes de Figuritas** — COLECCIONA TUS MOMENTOS / *Tu historia, figurita por figurita.* / Un álbum hecho con sus propias fotos para pegar, completar y revivir juntos.
+4. **Packs & Special Boxes** — SORPRENDE CON INTENCIÓN / *El regalo perfecto empieza aquí.* / Cajas armadas con detalle y cariño, listas para entregar.
+5. **Scrapbooks & Agendas** — DISEÑO PERSONALIZADO / *Recuerdos con mucho amor.* / Para planear, escribir y guardar lo que importa.
+
+Las fichas de cada producto (nombre, medida, descripción y precio) están en `src/data/catalogo.js`.
+
+**Suscripción:** *Suscripción mensual — S/ 29.90 / mes. Recibe tu Photobook Premium de 30 páginas, con capacidad para 200 fotos. Guarda los recuerdos de cada mes sin preocuparte por nada.* → Conoce más por WhatsApp
+
+**Contraportada**
+- ¿Cómo hago mi pedido? 1. Elige tu regalo · 2. Escríbenos por WhatsApp · 3. Envía tus fotos · 4. Recíbelo en casa
+- Cierre: *Hagamos juntos tu próximo regalo inolvidable.*
+- WhatsApp +51 960 985 082 · Instagram / Facebook / TikTok @tlsregalosperu · Lima, Perú · Envíos a todo el Perú
+- Nota legal: *Precios en soles, sujetos a confirmación. Imágenes referenciales.*
+
+## 4. Pendientes con la clienta
+
+- [ ] **Fotos reales de productos.** La web usa fotos genéricas de Unsplash (incluso un perro para el Photobook Biocuero). Para un catálogo profesional hacen falta fotos propias.
+- [ ] Confirmar precios vigentes.
+- [ ] Validar los pasos de pedido y las descripciones cortas (redactadas para el catálogo).
+- [ ] Confirmar si hay dirección física, horario o correo para la contraportada.
