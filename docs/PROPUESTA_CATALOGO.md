@@ -17,19 +17,27 @@ Fuente: https://true-love-store-web.vercel.app (logo, colores, productos, precio
 - **Logotipo:** imagotipo rojo sobre fondos claros; versión blanca sobre rojo; isotipo (corazón) como sello.
 - **Estilo:** mucho espacio en blanco, esquinas redondeadas, etiquetas pequeñas en mayúsculas espaciadas.
 
-## 2. Distribución de páginas (A4 vertical, 12 páginas)
+## 2. Distribución de páginas (A4 vertical, 21 páginas)
+
+El catálogo se organiza en **Fechas especiales** (una sección por fecha) y **Nuestros productos** (por tipo de producto). El índice muestra ambos grupos.
 
 | Pág. | Contenido | Composición |
 |---|---|---|
 | 01 | Portada | Degradado blanco → rosa claro, “CATÁLOGO OFICIAL 2026”, logotipo grande, lema y líneas de producto al pie. |
-| 02 | Bienvenida + índice | Frase principal, texto de marca, 4 beneficios en tarjetas rosa e índice con números de página. |
-| 03–04 | 01 · Photobooks & Fotolibros (7) | Foto de cabecera + intro + 3 productos; continuación con 4. |
-| 05–06 | 02 · Cuadros con Realidad Aumentada (7) | Igual estructura: 3 + 4. |
-| 07 | 03 · Álbumes de Figuritas (2) | Cabecera + 2 productos. |
-| 08–09 | 04 · Packs & Special Boxes (5) | 3 + 2. |
-| 10 | 05 · Scrapbooks & Agendas (3) | Cabecera + 3 productos. |
-| 11 | Suscripción mensual | Fondo rosa claro, tarjeta central con precio grande y botón de WhatsApp. |
-| 12 | Contraportada | Pasos para pedir, bloque rojo con WhatsApp, redes, ubicación y logotipo blanco. |
+| 02 | Bienvenida + índice | Frase principal, texto de marca, 4 beneficios en tarjetas rosa e índice agrupado con números de página. |
+| 03 | Fechas especiales · San Valentín (apertura) | Título grande en rojo, etiqueta “14 de febrero · Día de los enamorados”, frase, intro y 3 fotos reales en estilo polaroid. |
+| 04 | San Valentín · 3 diseños | Fichas 2 × 2: Netflix Enamorados, Nuestro tiempo juntos, Mosaico de recuerdos + tarjeta “¿Tienes otra idea en mente?” en el cuarto espacio. |
+| 05 | Fechas especiales · Día de la Madre (apertura) | Misma estructura, etiqueta “Segundo domingo de mayo”. |
+| 06–09 | Día de la Madre · 14 diseños | Fichas 2 × 2 (4 + 4 + 4 + 2). La última página suma la tarjeta “¿Tienes otra idea en mente?” a lo ancho. |
+| 10 | Fechas especiales · Día del Padre (apertura) | Misma estructura, etiqueta “Tercer domingo de junio”. |
+| 11 | Día del Padre · 4 diseños | Fichas 2 × 2: Netflix Papá, PAPÁ Collage, Figurita Mundialista, Padre y Abuelo. |
+| 12–13 | 01 · Photobooks & Fotolibros (7) | Foto de cabecera + intro + 3 productos; continuación con 4. |
+| 14–15 | 02 · Cuadros con Realidad Aumentada (7) | Igual estructura: 3 + 4. |
+| 16 | 03 · Álbumes de Figuritas (2) | Cabecera + 2 productos. |
+| 17–18 | 04 · Packs & Special Boxes (5) | 3 + 2. |
+| 19 | 05 · Scrapbooks & Agendas (3) | Cabecera + 3 productos. |
+| 20 | Suscripción mensual | Fondo rosa claro, tarjeta central con precio grande y botón de WhatsApp. |
+| 21 | Contraportada | Pasos para pedir, bloque rojo con WhatsApp, redes, ubicación y logotipo blanco. |
 
 **Ficha de producto:** foto cuadrada · etiqueta (Nuevo, Favorito, Premium…) · nombre · medida/formato en rojo · descripción de una línea · precio · botón “Pedir” (abre WhatsApp con el producto ya escrito).
 
@@ -68,3 +76,7 @@ Las fichas de cada producto (nombre, medida, descripción y precio) están en `s
 - [ ] Confirmar precios vigentes.
 - [ ] Validar los pasos de pedido y las descripciones cortas (redactadas para el catálogo).
 - [ ] Confirmar si hay dirección física, horario o correo para la contraportada.
+- [ ] **Día del Padre:** confirmar precios de los 4 cuadros (se usaron los de los cuadros temáticos de la web: 20 × 30 cm S/ 69 · 30 × 40 cm S/ 79), los nombres de cada diseño y si el marco negro y el natural cuestan lo mismo.
+- [ ] **Día de la Madre:** confirmar precios y nombres de los 14 diseños (se usaron los mismos precios de cuadros). El diseño “Mamá” Floral se mostró en marco negro; también existe la foto en marco natural. El collage promocional de 5 cuadros no se usó (se puede poner como portada de la sección si la clienta lo prefiere).
+- [ ] **San Valentín:** confirmar precios y nombres de los 3 diseños (mismos precios de cuadros). “Nuestro tiempo juntos” se mostró de frente; también hay foto de lado.
+- [ ] Enviar las fotos de las demás fechas (Navidad, graduaciones, etc.) y momentos especiales para sumar sus secciones. Se agregan en `fechas` dentro de `src/data/catalogo.js`.

@@ -101,7 +101,7 @@ a { color: inherit; }
 .bienvenida .titulo-grande { max-width: 160mm; margin-top: 6mm; }
 .bienvenida__firma { margin-top: 5mm; font-size: 10pt; font-style: italic; color: var(--rojo); }
 .beneficios {
-  list-style: none; padding: 0; margin: 12mm 0 0;
+  list-style: none; padding: 0; margin: 10mm 0 0;
   display: grid; grid-template-columns: 1fr 1fr; gap: 5mm;
 }
 .beneficios li {
@@ -111,15 +111,20 @@ a { color: inherit; }
 }
 .beneficios strong { font-size: 10.5pt; }
 .beneficios span { font-size: 9pt; line-height: 1.5; color: var(--texto-suave); }
-.indice { margin-top: auto; margin-bottom: 6mm; }
+.indice { margin-top: auto; margin-bottom: 6mm; padding-top: 8mm; }
 .indice ol { list-style: none; padding: 0; margin: 4mm 0 0; }
 .indice li {
   display: flex; align-items: baseline; gap: 3mm;
-  padding: 2.4mm 0; font-size: 10.5pt; font-weight: 500;
+  padding: 1.6mm 0; font-size: 10pt; font-weight: 500;
 }
 .indice a { text-decoration: none; }
 .indice a:hover { color: var(--rojo); }
 .indice__puntos { flex: 1; border-bottom: 1px dotted var(--rosa); }
+.indice li.indice__grupo {
+  padding: 3mm 0 0.5mm; font-size: 7pt; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--texto-suave);
+}
+.indice li.indice__grupo:first-child { padding-top: 0; }
 .indice li > span:last-child { color: var(--rojo); font-weight: 600; }
 
 /* ===== 3. Categorías ===== */
@@ -163,6 +168,50 @@ a { color: inherit; }
   background: var(--rosa); color: var(--negro);
 }
 .producto__cta:hover { background: var(--rojo); color: var(--blanco); }
+
+/* ===== 3b. Fechas especiales ===== */
+.fecha { background: linear-gradient(170deg, #fff 0%, var(--rosa-claro) 60%, #fbd9e8 100%); }
+.fecha__titulo { font-size: 40pt; font-weight: 700; line-height: 1.05; color: var(--rojo); margin-top: 3mm; }
+.fecha__cuando {
+  display: inline-block; align-self: flex-start; margin: 4mm 0 3mm;
+  padding: 1.2mm 4mm; border-radius: 999px;
+  background: var(--rojo); color: var(--blanco);
+  font-size: 8pt; font-weight: 600; letter-spacing: 0.08em;
+}
+.fecha__cabecera { display: flex; flex-direction: column; }
+.fecha__polaroids {
+  position: relative; flex: 1;
+  display: flex; justify-content: center; align-items: center;
+  margin: 6mm 0 4mm;
+}
+.polaroid {
+  margin: 0; width: 62mm; padding: 3mm 3mm 10mm;
+  background: var(--blanco); border-radius: 1mm;
+  box-shadow: 0 8px 24px rgba(26, 26, 26, 0.14);
+}
+.polaroid img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.polaroid--1 { transform: rotate(-6deg) translateY(6mm); margin-right: -10mm; }
+.polaroid--2 { transform: rotate(1.5deg) translateY(-8mm); z-index: 1; width: 70mm; }
+.polaroid--3 { transform: rotate(6deg) translateY(8mm); margin-left: -10mm; }
+.fecha__nota {
+  text-align: center; margin-bottom: 4mm;
+  font-size: 8pt; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rojo);
+}
+
+.fecha__a-medida {
+  padding: 8mm; border-radius: 5mm;
+  background: var(--rosa-claro); border-left: 3px solid var(--rosa);
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+}
+.fecha__a-medida--ancho { grid-column: 1 / -1; margin-top: 4mm; padding: 10mm 12mm; }
+.fecha__a-medida h3 { font-size: 16pt; font-weight: 700; margin-top: 2mm; }
+.fecha__a-medida p:not(.eyebrow) { font-size: 10pt; line-height: 1.6; color: var(--texto-suave); margin-top: 2mm; max-width: 130mm; }
+.fecha__a-medida .boton { margin-top: 6mm; }
+
+.productos--dos { grid-template-columns: repeat(2, 1fr); gap: 6mm 10mm; }
+.productos--dos .producto__imagen { aspect-ratio: 1.18; }
+.productos--dos .producto h3 { font-size: 11pt; }
+.productos--dos .producto__descripcion { font-size: 8.5pt; }
 
 /* ===== 4. Suscripción ===== */
 .suscripcion { background: var(--rosa-claro); justify-content: center; align-items: center; }
@@ -226,6 +275,11 @@ a { color: inherit; }
   .contacto__cierre { padding: 40px 16px; }
   .contacto__redes { grid-template-columns: 1fr; }
   .contacto__logo { margin-top: 40px; width: 70vw; }
+  .fecha__titulo { font-size: 36px; }
+  .fecha__polaroids { margin: 32px 0 24px; }
+  .polaroid { width: 30vw; padding: 6px 6px 18px; }
+  .polaroid--2 { width: 34vw; }
+  .productos--dos { gap: 24px 12px; }
   .suscripcion { padding: 48px 16px; }
   .suscripcion__caja { padding: 40px 20px; }
 }

@@ -1,3 +1,4 @@
+import { Fragment } from 'react'
 import Pagina from './Pagina'
 import { bienvenida } from '../data/catalogo'
 
@@ -21,12 +22,15 @@ export default function Bienvenida({ numero, indice }) {
       <div className="indice">
         <p className="eyebrow">Contenido</p>
         <ol>
-          {indice.map((item) => (
-            <li key={item.id}>
-              <a href={`#${item.id}`}>{item.nombre}</a>
-              <span className="indice__puntos" />
-              <span>{String(item.pagina).padStart(2, '0')}</span>
-            </li>
+          {indice.map((item, i) => (
+            <Fragment key={item.id}>
+              {item.grupo !== indice[i - 1]?.grupo && <li className="indice__grupo">{item.grupo}</li>}
+              <li>
+                <a href={`#${item.id}`}>{item.nombre}</a>
+                <span className="indice__puntos" />
+                <span>{String(item.pagina).padStart(2, '0')}</span>
+              </li>
+            </Fragment>
           ))}
         </ol>
       </div>

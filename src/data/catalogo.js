@@ -1,6 +1,20 @@
 // Datos del catálogo, tomados de https://true-love-store-web.vercel.app
 // Para cambiar precios, textos o fotos, solo se edita este archivo.
 
+import padreAbuelo from '../assets/images/dia-del-padre/padre-abuelo.jpg'
+import padreAbueloV from '../assets/images/dia-del-padre/padre-abuelo-vertical.jpg'
+import mundialista from '../assets/images/dia-del-padre/mundialista.jpg'
+import papaCollage from '../assets/images/dia-del-padre/papa-collage.jpg'
+import papaCollageV from '../assets/images/dia-del-padre/papa-collage-vertical.jpg'
+import netflixPapa from '../assets/images/dia-del-padre/netflix-papa.jpg'
+import netflixPapaV from '../assets/images/dia-del-padre/netflix-papa-vertical.jpg'
+
+// Fotos del Día de la Madre: se cargan por nombre de archivo, p. ej. madre('mama-letras')
+const fotosMadre = import.meta.glob('../assets/images/dia-de-la-madre/*.jpg', { eager: true, import: 'default' })
+const madre = (nombre) => fotosMadre[`../assets/images/dia-de-la-madre/${nombre}.jpg`]
+const fotosValentin = import.meta.glob('../assets/images/san-valentin/*.jpg', { eager: true, import: 'default' })
+const valentin = (nombre) => fotosValentin[`../assets/images/san-valentin/${nombre}.jpg`]
+
 const foto = (id) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=900&q=85`
 
@@ -36,6 +50,82 @@ export const bienvenida = {
     { titulo: 'Presentación inolvidable', texto: 'Detalles pensados para fechas especiales.' },
   ],
 }
+
+// ===== Fechas especiales =====
+// Cada fecha tiene su propia sección: página de apertura + fichas de sus diseños.
+// Para agregar otra fecha (Día de la Madre, San Valentín…), copia el bloque y cambia los datos.
+// `fotos` son las 3 imágenes verticales de la apertura; `imagen` en cada producto es la foto cuadrada.
+const tamanosCuadro = [
+  { label: '20 × 30 cm', precio: 69 },
+  { label: '30 × 40 cm', precio: 79 },
+]
+
+// Diseños de una fecha agrupados de 4 en 4 (una página 2 × 2 cada grupo).
+export function dividirDisenos(productos) {
+  const paginas = []
+  for (let i = 0; i < productos.length; i += 4) paginas.push(productos.slice(i, i + 4))
+  return paginas
+}
+
+export const fechas = [
+  {
+    id: 'san-valentin',
+    nombre: 'San Valentín',
+    cuando: '14 de febrero · Día de los enamorados',
+    titulo: 'Para tu persona favorita.',
+    intro:
+      'Su historia de amor convertida en un cuadro: sus nombres, sus fechas y sus fotos más bonitas. Perfecto para San Valentín, aniversarios o simplemente para recordarle cuánto la quieres.',
+    nota: 'Marco negro o natural · Diseño personalizado con tus fotos y textos',
+    fotos: [valentin('tiempo-juntos-vertical'), valentin('netflix-enamorados-vertical'), valentin('mosaico-recuerdos-vertical')],
+    productos: [
+      { id: 'valentin-netflix', nombre: 'Cuadro “Netflix Enamorados”', detalle: 'Hasta 9 fotos', descripcion: 'Su historia como la serie romántica número uno, con sus nombres y una sinopsis dedicada.', variantes: tamanosCuadro, badge: 'Favorito', imagen: valentin('netflix-enamorados') },
+      { id: 'valentin-tiempo', nombre: 'Cuadro “Nuestro tiempo juntos”', detalle: '9 fotos + contador', descripcion: 'Su foto favorita en un corazón y los años, meses, días y horas que llevan juntos.', variantes: tamanosCuadro, badge: 'Nuevo', imagen: valentin('tiempo-juntos') },
+      { id: 'valentin-mosaico', nombre: 'Cuadro “Mosaico de recuerdos”', detalle: '+60 fotos + foto principal', descripcion: 'Un mosaico en blanco y negro con ustedes a color al centro, sus nombres, dedicatoria y fecha.', variantes: tamanosCuadro, badge: 'Exclusivo', imagen: valentin('mosaico-recuerdos') },
+    ],
+  },
+  {
+    id: 'dia-de-la-madre',
+    nombre: 'Día de la Madre',
+    cuando: 'Segundo domingo de mayo',
+    titulo: 'Para la reina de la casa.',
+    intro:
+      'Cuadros hechos con sus fotos y con las palabras que llevas tiempo queriendo decirle. Elige el estilo que más se parece a ella: tierno, elegante, divertido o lleno de flores.',
+    nota: 'Marco negro o natural · Diseño personalizado con tus fotos y textos',
+    fotos: [madre('mama-letras-vertical'), madre('netflix-mama-vertical'), madre('contigo-lo-tengo-todo-vertical')],
+    productos: [
+      { id: 'madre-netflix', nombre: 'Cuadro “Netflix Mamá”', detalle: 'Hasta 9 fotos', descripcion: 'Su historia presentada como la serie más vista de la familia, con sinopsis dedicada.', variantes: tamanosCuadro, badge: 'Favorito', imagen: madre('netflix-mama') },
+      { id: 'madre-letras', nombre: 'Cuadro “MAMÁ” Collage', detalle: '8 fotos + frase', descripcion: 'Sus mejores momentos alrededor de la palabra más bonita, con tu mensaje al pie.', variantes: tamanosCuadro, badge: 'Más vendido', imagen: madre('mama-letras') },
+      { id: 'madre-inspira', nombre: 'Cuadro “Mamá que inspira”', detalle: '14 fotos estilo polaroid', descripcion: 'Un collage lleno de recuerdos con una frase escrita a mano sobre las fotos.', variantes: tamanosCuadro, imagen: madre('mama-que-inspira') },
+      { id: 'madre-quien-eres', nombre: 'Cuadro “¿Quién eres tú para mí?”', detalle: '5 fotos + carta', descripcion: 'Estilo revista en blanco y negro, con una carta dedicada de tu puño y letra.', variantes: tamanosCuadro, badge: 'Exclusivo', imagen: madre('quien-eres-tu') },
+      { id: 'madre-contigo', nombre: 'Cuadro “Contigo lo tengo todo”', detalle: '6 fotos + 6 frases', descripcion: 'Tonos rosa y flores de acuarela, con una frase corta junto a cada foto.', variantes: tamanosCuadro, badge: 'Nuevo', imagen: madre('contigo-lo-tengo-todo') },
+      { id: 'madre-floral', nombre: 'Cuadro “Mamá” Floral', detalle: '10 fotos + dedicatoria', descripcion: 'Fondo negro con flores y todo lo que ella es para ti, escrito línea por línea.', variantes: tamanosCuadro, imagen: madre('mama-floral') },
+      { id: 'madre-eres-la-mejor', nombre: 'Cuadro “Eres la mejor”', detalle: '9 fotos', descripcion: 'Collage a todo color con letras recortadas, divertido y lleno de personalidad.', variantes: tamanosCuadro, imagen: madre('eres-la-mejor') },
+      { id: 'madre-la-mejor', nombre: 'Cuadro “La mejor Mamá”', detalle: '12 fotos', descripcion: 'Doce momentos juntas enmarcados con flores en tonos suaves.', variantes: tamanosCuadro, imagen: madre('la-mejor-mama') },
+      { id: 'madre-te-amo', nombre: 'Cuadro “Má, te amo”', detalle: '6 fotos', descripcion: 'Diseño moderno en verde que forma tu mensaje entre las fotos.', variantes: tamanosCuadro, imagen: madre('ma-te-amo') },
+      { id: 'madre-infinito', nombre: 'Cuadro “Hasta el infinito”', detalle: '1 foto + nombre', descripcion: 'Una sola foto a todo tamaño con una frase tierna y la firma de quien la regala.', variantes: tamanosCuadro, imagen: madre('hasta-el-infinito') },
+      { id: 'madre-reina', nombre: 'Cuadro “Mi reina favorita”', detalle: '1 foto + nombres', descripcion: 'Corona, estrellas y su foto favorita, firmado por toda la familia.', variantes: tamanosCuadro, imagen: madre('reina-favorita') },
+      { id: 'madre-hogar', nombre: 'Cuadro “Hogar de amor”', detalle: '2 fotos', descripcion: 'Flores de acuarela y dos fotos tipo polaroid para un detalle delicado.', variantes: tamanosCuadro, imagen: madre('hogar-de-amor') },
+      { id: 'madre-gracias-flores', nombre: 'Cuadro “Gracias Mamá”', detalle: '2 fotos + nombre', descripcion: 'Un agradecimiento con flores y su nombre, para decirle todo lo que le debes.', variantes: tamanosCuadro, imagen: madre('gracias-mama-flores') },
+      { id: 'madre-heroina', nombre: 'Cuadro “Mi heroína”', detalle: '1 foto + nombres', descripcion: 'Tres razones para darle las gracias y una foto especial al centro.', variantes: tamanosCuadro, imagen: madre('gracias-mama-heroina') },
+    ],
+  },
+  {
+    id: 'dia-del-padre',
+    nombre: 'Día del Padre',
+    cuando: 'Tercer domingo de junio',
+    titulo: 'Para el héroe de la casa.',
+    intro:
+      'Cuadros diseñados con sus fotos, su nombre y las palabras que siempre quisiste decirle. Un regalo que se queda en su escritorio, en su sala y en su corazón.',
+    nota: 'Marco negro o natural · Diseño personalizado con tus fotos y textos',
+    fotos: [papaCollageV, netflixPapaV, padreAbueloV],
+    productos: [
+      { id: 'padre-netflix', nombre: 'Cuadro “Netflix Papá”', detalle: 'Hasta 9 fotos', descripcion: 'Su historia presentada como la serie número uno de la familia, con sinopsis dedicada.', variantes: tamanosCuadro, badge: 'Favorito', imagen: netflixPapa },
+      { id: 'padre-collage', nombre: 'Cuadro “PAPÁ” Collage', detalle: '8 fotos + frase', descripcion: 'Sus mejores momentos alrededor de la palabra más bonita, con tu mensaje al pie.', variantes: tamanosCuadro, badge: 'Más vendido', imagen: papaCollage },
+      { id: 'padre-mundialista', nombre: 'Cuadro “Figurita Mundialista”', detalle: '1 foto + nombre', descripcion: 'Papá convertido en la figurita más valiosa del álbum, con su nombre y bandera.', variantes: tamanosCuadro, badge: 'Nuevo', imagen: mundialista },
+      { id: 'padre-abuelo', nombre: 'Cuadro “Padre y Abuelo”', detalle: '9 fotos estilo polaroid', descripcion: 'Para el papá que ahora también es abuelo: tres generaciones en un solo cuadro.', variantes: tamanosCuadro, badge: 'Exclusivo', imagen: padreAbuelo },
+    ],
+  },
+]
 
 export const categorias = [
   {
