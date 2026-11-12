@@ -1,0 +1,263 @@
+/* ==========================================================================
+   Tipografía elegante + animaciones y efectos.
+   Las animaciones solo existen en pantalla: al imprimir / guardar PDF
+   todo se muestra quieto y completo. Quien tenga activado "reducir
+   movimiento" en su sistema tampoco las verá.
+   ========================================================================== */
+
+/* ===== Tipografía ===== */
+:root {
+  --fuente: 'Jost', 'Segoe UI', sans-serif;                    /* textos */
+  --fuente-titulos: 'Playfair Display', Georgia, serif;         /* títulos */
+  --fuente-script: 'Great Vibes', 'Brush Script MT', cursive;   /* frases a mano */
+  --suave: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+body { font-weight: 400; letter-spacing: 0.005em; }
+
+.titulo-grande,
+.fecha__titulo,
+.producto h3,
+.categoria__numero,
+.suscripcion__precio,
+.contacto__cierre h2,
+.fecha__a-medida h3,
+.producto__precio strong,
+.cargador__marca {
+  font-family: var(--fuente-titulos);
+}
+.titulo-grande { font-weight: 600; letter-spacing: -0.01em; }
+.fecha__titulo { font-size: 44pt; font-weight: 700; letter-spacing: -0.015em; }
+.producto h3 { font-weight: 600; letter-spacing: -0.005em; }
+.productos--dos .producto h3 { font-size: 12pt; }
+.producto__precio strong { font-weight: 700; }
+.suscripcion__precio, .contacto__cierre h2 { font-weight: 600; }
+
+.portada__lema { font-family: var(--fuente-titulos); font-style: italic; font-size: 16pt; line-height: 1.45; }
+
+.categoria__frase,
+.bienvenida__firma {
+  font-family: var(--fuente-script);
+  font-weight: 400; font-style: normal; line-height: 1.15;
+}
+.categoria__frase { font-size: 24pt; margin-top: 1mm; }
+.bienvenida__firma { font-size: 20pt; }
+
+/* Jost es un poco más pequeña que la letra anterior: se compensan los textos chicos */
+.texto-intro { font-size: 10.5pt; }
+.producto__descripcion { font-size: 8.5pt; }
+.productos--dos .producto__descripcion { font-size: 9pt; }
+.producto__detalle { font-size: 8.5pt; }
+.beneficios span, .contacto__pasos p { font-size: 9.5pt; }
+
+.eyebrow { font-weight: 500; letter-spacing: 0.26em; }
+.indice a, .beneficios strong { font-weight: 500; }
+
+/* ===== Barra superior ===== */
+.barra-acciones { justify-content: space-between; align-items: center; }
+.barra-acciones__logo { width: 120px; display: block; transition: opacity 0.3s; }
+.barra-acciones__logo:hover { opacity: 0.75; }
+.barra-acciones button { font-family: var(--fuente); letter-spacing: 0.04em; transition: background 0.3s, transform 0.3s var(--suave), box-shadow 0.3s; }
+.barra-acciones button:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(227, 6, 19, 0.25); }
+.barra-acciones__progreso {
+  position: absolute; left: 0; bottom: -1px; height: 2px; width: 100%;
+  background: linear-gradient(90deg, var(--rosa), var(--rojo));
+  transform-origin: left; transform: scaleX(var(--progreso, 0));
+}
+
+/* ===== Pantalla de carga ===== */
+.cargador {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: radial-gradient(circle at 50% 45%, #fff 0%, var(--rosa-claro) 55%, #fbd9e8 100%);
+  transition: opacity 0.7s ease, visibility 0.7s;
+}
+.cargador--saliendo { opacity: 0; visibility: hidden; }
+.cargador--saliendo .cargador__corazon { transform: scale(1.4); }
+.cargador__corazon {
+  width: 96px; height: 96px; border-radius: 50%; overflow: hidden;
+  box-shadow: 0 0 0 0 rgba(227, 6, 19, 0.35);
+  animation: latido 1.1s ease-in-out infinite, onda 1.1s ease-out infinite;
+  transition: transform 0.7s var(--suave);
+}
+.cargador__corazon img { width: 100%; height: 100%; object-fit: cover; }
+.cargador__marca { margin-top: 14px; font-size: 26px; font-weight: 600; color: var(--rojo); animation: aparecer 0.8s 0.2s both; }
+.cargador__texto { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--texto-suave); animation: aparecer 0.8s 0.4s both; }
+.cargador__barra {
+  margin-top: 12px; width: 140px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, var(--rojo), transparent) var(--rosa-borde);
+  background-size: 50% 100%; background-repeat: no-repeat;
+  animation: recorrer 1.2s ease-in-out infinite;
+}
+
+@keyframes latido {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.12); }
+  30% { transform: scale(0.98); }
+  45% { transform: scale(1.08); }
+}
+@keyframes onda {
+  0% { box-shadow: 0 0 0 0 rgba(227, 6, 19, 0.35); }
+  100% { box-shadow: 0 0 0 26px rgba(227, 6, 19, 0); }
+}
+@keyframes recorrer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ===== Portada: entrada escalonada + corazones flotando ===== */
+.portada__contenido { position: relative; z-index: 1; }
+.portada__corazones { position: absolute; inset: 0; pointer-events: none; }
+.portada__corazones svg {
+  position: absolute; bottom: -12mm; fill: var(--rosa); opacity: 0;
+  animation: flotar linear infinite;
+}
+@keyframes flotar {
+  0% { transform: translateY(0) rotate(-8deg); opacity: 0; }
+  10% { opacity: 0.55; }
+  50% { transform: translateY(-150mm) rotate(8deg); }
+  90% { opacity: 0.35; }
+  100% { transform: translateY(-310mm) rotate(-6deg); opacity: 0; }
+}
+
+html.anim .portada__contenido > *,
+html.anim .portada__pie { opacity: 0; }
+html.anim.cargado .portada__contenido > .eyebrow { animation: aparecer 0.9s var(--suave) 0.1s both; }
+html.anim.cargado .portada__logo { animation: logo-entrada 1.3s var(--suave) 0.25s both; }
+html.anim.cargado .portada__linea { animation: linea-crece 0.9s var(--suave) 0.9s both; }
+html.anim.cargado .portada__lema { animation: aparecer 1s var(--suave) 1.1s both; }
+html.anim.cargado .portada__pie { animation: aparecer 1s var(--suave) 1.4s both; }
+
+@keyframes logo-entrada {
+  from { opacity: 0; transform: scale(0.92); filter: blur(10px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes linea-crece {
+  from { opacity: 0; transform: scaleX(0); }
+  to { opacity: 1; transform: scaleX(1); }
+}
+
+/* ===== Aparición al hacer scroll ===== */
+html.anim [data-revelar] {
+  opacity: 0;
+  transition:
+    opacity 0.9s ease,
+    translate 0.9s var(--suave),
+    scale 0.9s var(--suave);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+html.anim [data-revelar='subir'] { translate: 0 26px; }
+html.anim [data-revelar='caer'] { translate: 0 -40px; scale: 0.92; }
+html.anim [data-revelar].visible { opacity: 1; translate: 0 0; scale: 1; }
+
+/* Brillo que recorre los títulos de cada fecha */
+html.anim .fecha__titulo {
+  background: linear-gradient(100deg, var(--rojo) 0%, var(--rojo) 40%, #ff7a9a 50%, var(--rojo) 60%, var(--rojo) 100%);
+  background-size: 300% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: brillo 6s ease-in-out infinite;
+}
+@keyframes brillo {
+  0%, 20% { background-position: 100% 0; }
+  60%, 100% { background-position: 0 0; }
+}
+
+/* ===== Efectos al pasar el mouse ===== */
+.producto { transition: transform 0.45s var(--suave); }
+.producto__imagen { box-shadow: 0 0 0 rgba(26, 26, 26, 0); transition: box-shadow 0.45s var(--suave); }
+.producto__imagen img { transition: transform 0.9s var(--suave); }
+.producto:hover { transform: translateY(-4px); }
+.producto:hover .producto__imagen { box-shadow: 0 14px 30px rgba(227, 6, 19, 0.14); }
+.producto:hover .producto__imagen img { transform: scale(1.06); }
+.producto__cta { transition: background 0.3s, color 0.3s, transform 0.3s var(--suave); }
+.producto__cta:hover { transform: scale(1.06); }
+.producto__badge { box-shadow: 0 2px 8px rgba(26, 26, 26, 0.08); }
+
+.polaroid { transition: opacity 0.9s ease, translate 0.9s var(--suave), scale 0.5s var(--suave), box-shadow 0.5s; }
+.polaroid:hover { scale: 1.06; z-index: 3; box-shadow: 0 18px 40px rgba(26, 26, 26, 0.22); transition-delay: 0s; }
+
+.categoria__foto img { transition: transform 6s ease-out; }
+.categoria__foto:hover img { transform: scale(1.08); }
+
+.beneficios li { transition: transform 0.4s var(--suave), box-shadow 0.4s; }
+.beneficios li:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(227, 6, 19, 0.08); }
+
+.indice a {
+  background: linear-gradient(var(--rojo), var(--rojo)) no-repeat 0 100% / 0 1px;
+  transition: background-size 0.4s var(--suave), color 0.3s;
+}
+.indice a:hover { background-size: 100% 1px; }
+
+/* Botones con un destello que los cruza */
+.boton { position: relative; overflow: hidden; transition: transform 0.3s var(--suave), box-shadow 0.3s; }
+.boton::after {
+  content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: skewX(-20deg);
+}
+.boton:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(227, 6, 19, 0.25); }
+.boton:hover::after { animation: destello 0.8s ease; }
+.boton--blanco:hover { box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18); }
+@keyframes destello { to { left: 120%; } }
+
+.contacto__redes a { transition: transform 0.3s var(--suave); }
+.contacto__redes a:hover { transform: translateX(3px); }
+
+/* ===== Botón flotante de WhatsApp ===== */
+.whatsapp-flotante {
+  position: fixed; right: 20px; bottom: 20px; z-index: 20;
+  display: flex; align-items: center; gap: 10px;
+  height: 56px; padding: 0 16px; border-radius: 999px;
+  background: var(--rojo); color: var(--blanco); text-decoration: none;
+  box-shadow: 0 10px 28px rgba(227, 6, 19, 0.35);
+  transition: transform 0.3s var(--suave), box-shadow 0.3s;
+}
+.whatsapp-flotante::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit;
+  border: 2px solid var(--rojo); animation: pulso 2.2s ease-out infinite;
+}
+.whatsapp-flotante svg { width: 26px; height: 26px; fill: currentColor; flex-shrink: 0; }
+.whatsapp-flotante__texto { font-size: 14px; font-weight: 500; letter-spacing: 0.02em; }
+.whatsapp-flotante:hover { transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 34px rgba(227, 6, 19, 0.45); }
+@keyframes pulso {
+  0% { opacity: 0.7; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.35); }
+}
+html.anim .whatsapp-flotante { opacity: 0; }
+html.anim.cargado .whatsapp-flotante { animation: aparecer 0.8s var(--suave) 1.8s both; }
+
+/* ===== Celular ===== */
+@media screen and (max-width: 840px) {
+  .fecha__titulo { font-size: 38px; }
+  .categoria__frase { font-size: 26px; }
+  .barra-acciones__logo { width: 96px; }
+  .whatsapp-flotante { right: 14px; bottom: 14px; width: 56px; padding: 0; justify-content: center; }
+  .whatsapp-flotante__texto { display: none; }
+}
+
+/* ===== Reducir movimiento ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .portada__corazones { display: none; }
+}
+
+/* ===== Impresión / PDF: todo visible y quieto ===== */
+@media print {
+  .cargador, .whatsapp-flotante, .portada__corazones, .barra-acciones__progreso { display: none !important; }
+  html.anim [data-revelar],
+  html.anim .portada__contenido > *,
+  html.anim .portada__pie {
+    opacity: 1 !important; translate: none !important; scale: none !important;
+    animation: none !important; filter: none !important;
+  }
+  .polaroid { scale: none !important; }
+  html.anim .fecha__titulo {
+    background: none !important; animation: none !important;
+    -webkit-text-fill-color: currentColor; color: var(--rojo);
+  }
+}
